@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Counting & Detection</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        /* Body styles with background image */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&fit=crop&w=1920&h=1080') no-repeat center center/cover;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        h1 {
+            color: #00796b;
+            margin-top: 20px;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        /* Video frame container */
+        div.video-container {
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            animation: fadeInUp 1.5s ease-in-out;
+            transform: translateY(50px);
+            animation: slideInUp 1.5s ease-in-out forwards;
+        }
+
+        /* Video image styling */
+        img {
+            width: 700px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Button container */
+        .button-container {
+            margin-top: 30px;
+            animation: fadeIn 2s ease-in-out;
+            transform: translateY(50px);
+            animation: slideInUp 2s ease-in-out forwards;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #ff4081; /* Vibrant accent color */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #c41c55;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            background-color: #910031;
+            transform: scale(1);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto; /* Position footer at the bottom of the page */
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInUp {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #message {
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+      display: none; /* Initially hidden */
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <h1>Human Counting & Detection</h1>
+    
+
+    <div class="video-container">
+        <img src="{{ url_for('video_feed') }}" alt="Live Video Feed">
+    </div>
+    <button id="minusButton">-</button>
+  <p id="message">Disaster Found</p>
+    <!-- Buttons for start/stop counting -->
+    <div class="button-container">
+        <button onclick="startCounting()">Start Counting</button>
+        <button onclick="stopCounting()">Stop Counting</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p> 2025 Anushka Jha | Banasthali Vidhyapith</p>
+    </footer>
+
+    <script>
+        function startCounting() {
+            fetch('/start');
+        }
+
+        function stopCounting() {
+            fetch('/stop').then(response => response.text()).then(alert);
+        }
+
+       
+    const minusButton = document.getElementById('minusButton');
+    const message = document.getElementById('message');
+
+    // Add a click event listener to the button
+    minusButton.addEventListener('click', () => {
+      message.style.display = 'block'; // Show the message
+    });
+  
+    </script>
+</body>
+</html> 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Counting & Detection</title>
+    <style>
+        /* Your existing CSS */
+    </style>
+</head>
+<body>
+    <h1>Human Counting & Detection</h1>
+    
+    <!-- Video feed -->
+    <div class="video-container">
+        <img src="{{ url_for('video_feed') }}" alt="Live Video Feed">
+    </div>
+    
+    <!-- Buttons for start/stop counting -->
+    <div class="button-container">
+        <button onclick="startCounting()">Start Counting</button>
+        <button onclick="stopCounting()">Stop Counting</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Human Detection System | Powered by ABC</p>
+    </footer>
+
+    <script>
+        function startCounting() {
+            fetch('/start');
+        }
+
+        function stopCounting() {
+            fetch('/stop').then(response => response.text()).then(alert);
+        }
+    </script>
+</body>
+</html>
